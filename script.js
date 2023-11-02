@@ -13,14 +13,14 @@ const Gameboard = {
 
 const container = document.querySelector('.container')
 
-Gameboard.gameboard.forEach(newSquare => {
-  newSquare = document.createElement("div")
-  newSquare.classList.add('square')
-  newSquare.style.backgroundColor = 'green'
+Gameboard.gameboard.forEach((item, index) => {
+  let newSquare = document.createElement("div");
+  newSquare.classList.add('square' + index);
+  newSquare.style.backgroundColor = 'green';
   newSquare.addEventListener('click', function() {
     changeSquare(this);
-  })
-  container.appendChild(newSquare)
+  });
+  container.appendChild(newSquare);
 });
 
 // Gameboard.logIt();
@@ -56,7 +56,27 @@ let changeSquare = function(self) {
     self.style.backgroundColor = 'blue'
     GameState.moveMade()
   }
+  checkWin()
   console.log(playerTurn)
+}
+
+// Tracking if 3 x's or o's line up or if it is a tie game
+const box0 = document.querySelector('.square0')
+const box1 = document.querySelector('.square1')
+const box2 = document.querySelector('.square2')
+const box3 = document.querySelector('.square3')
+const box4 = document.querySelector('.square4')
+const box5 = document.querySelector('.square5')
+const box6 = document.querySelector('.square6')
+const box7 = document.querySelector('.square7')
+const box8 = document.querySelector('.square8')
+
+const checkWin = function() {
+  if (box0.style.backgroundColor === 'blue' && box1.style.backgroundColor === 'blue' && box2.style.backgroundColor === 'blue') {
+    console.log('X Wins!')
+  } else {
+    return null
+  }
 }
 
 

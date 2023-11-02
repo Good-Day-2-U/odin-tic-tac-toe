@@ -1,7 +1,7 @@
 
 
 
-
+// Gameboard Logic
 
 const Gameboard = {
   gameboard : ["A","A","A","A","A","A","A","A","A"],
@@ -11,18 +11,40 @@ const Gameboard = {
   titleName : 'This is Tic Tac Toe!',
 }
 
+const container = document.querySelector('.container')
+
+Gameboard.gameboard.forEach(newSquare => {
+  newSquare = document.createElement("div")
+  container.appendChild(newSquare)
+});
+
 Gameboard.logIt();
 console.log(Gameboard.titleName)
 
 
 
-// function addPlayer(name) {
-//   this.playerName = name
-// }
+// Gameloop/Update
 
-// addPlayer.prototype.giveName = function() {
-//   return this.playerName
-// }
+const GameState = {
+  playerTurn : 0,
+
+  moveMade: function() {
+    if (this.playerTurn === 0) {
+      this.playerTurn = 1
+    } else {
+      this.playerTurn = 0
+    }
+  }
+}
+
+GameState.moveMade()
+console.log(GameState.playerTurn)
+
+
+
+
+
+// Adding Players
 
 class AddPerson {
   constructor(name) {
@@ -34,13 +56,6 @@ class AddPerson {
     return this.playerName
   }
 }
-
-const container = document.querySelector('.container')
-
-Gameboard.gameboard.forEach(newSquare => {
-  newSquare = document.createElement("div")
-  container.appendChild(newSquare)
-});
 
 
 player1 = new AddPerson("Brandon")

@@ -15,31 +15,49 @@ const container = document.querySelector('.container')
 
 Gameboard.gameboard.forEach(newSquare => {
   newSquare = document.createElement("div")
+  newSquare.classList.add('square')
+  newSquare.style.backgroundColor = 'green'
+  newSquare.addEventListener('click', function() {
+    changeSquare(this);
+  })
   container.appendChild(newSquare)
 });
 
-Gameboard.logIt();
-console.log(Gameboard.titleName)
+// Gameboard.logIt();
+// console.log(Gameboard.titleName)
 
 
 
 // Gameloop/Update
 
-const GameState = {
-  playerTurn : 0,
+let playerTurn = 0
 
+const GameState = {
   moveMade: function() {
-    if (this.playerTurn === 0) {
-      this.playerTurn = 1
+    if (playerTurn === 0) {
+      return playerTurn = 1
     } else {
-      this.playerTurn = 0
-    }
-  }
+      return playerTurn = 0
+    } 
+  } 
 }
 
-GameState.moveMade()
+// GameState.moveMade()
 console.log(GameState.playerTurn)
 
+
+
+// Adding a shape / color and changing turn
+let changeSquare = function(self) {
+  if (playerTurn === 1 && self.style.backgroundColor === 'green') { 
+    self.style.backgroundColor = 'red'
+    GameState.moveMade()
+  } else if (playerTurn === 0 && self.style.backgroundColor === 'green') {
+    self.style.backgroundColor = 'blue'
+    GameState.moveMade()
+  }
+  console.log(playerTurn)
+}
 
 
 

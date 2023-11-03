@@ -15,7 +15,8 @@ const container = document.querySelector('.container')
 
 Gameboard.gameboard.forEach((item, index) => {
   let newSquare = document.createElement("div");
-  newSquare.classList.add('square' + index);
+  newSquare.classList.add('square');
+  newSquare.classList.add(index);
   newSquare.style.backgroundColor = 'green';
   newSquare.addEventListener('click', function() {
     changeSquare(this);
@@ -49,11 +50,19 @@ console.log(GameState.playerTurn)
 
 // Adding a shape / color and changing turn
 let changeSquare = function(self) {
-  if (playerTurn === 1 && self.style.backgroundColor === 'green') { 
+  if (playerTurn === 0 && self.style.backgroundColor === 'green') { 
     self.style.backgroundColor = 'red'
+    let x = document.createElement('img')
+    x.setAttribute('src', 'images/x.svg')
+    x.setAttribute('alt', 'an X!')
+    self.appendChild(x)
     GameState.moveMade()
-  } else if (playerTurn === 0 && self.style.backgroundColor === 'green') {
+  } else if (playerTurn === 1 && self.style.backgroundColor === 'green') {
     self.style.backgroundColor = 'blue'
+    let o = document.createElement('img')
+    o.setAttribute('src', 'images/o.svg')
+    o.setAttribute('alt', 'an O!')
+    self.appendChild(o)
     GameState.moveMade()
   }
   checkWin()
@@ -73,7 +82,7 @@ const box8 = document.querySelector('.square8')
 
 const checkWin = function() {
   if (box0.style.backgroundColor === 'blue' && box1.style.backgroundColor === 'blue' && box2.style.backgroundColor === 'blue') {
-    console.log('X Wins!')
+    console.log('Player 2 Wins!')
   } else {
     return null
   }
